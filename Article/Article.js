@@ -85,21 +85,31 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Building Components',
+    date: 'March 15 2020',
+    firstParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
+    Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class='expandButton'></span>
-  </div>
+  
 
   Hint: You will need to use createElement more than once here!
+  
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
@@ -111,4 +121,68 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
+
+  <div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class='expandButton'></span>
+  </div>
 */
+
+
+function createArticle(articleData) {
+  // Article container
+  const myArticle = document.createElement('div');
+  myArticle.classList.add('article');
+
+  // Article h2
+  const myArticleH2 = document.createElement('h2');
+  myArticleH2.textContent = articleData.title;
+  myArticle.appendChild(myArticleH2);
+
+  // Date
+  const myArticleDate = document.createElement('p');
+  myArticleDate.classList.add('date');
+  myArticleDate.textContent = articleData.date;
+  myArticle.appendChild(myArticleDate);
+
+  // First article paragraph
+  const myArticlePar1 = document.createElement('p');
+  myArticlePar1.textContent = articleData.firstParagraph;
+  myArticle.appendChild(myArticlePar1);
+
+  // Second article paragraph
+  const myArticlePar2 = document.createElement('p');
+  myArticlePar1.textContent = articleData.secondParagraph;
+  myArticle.appendChild(myArticlePar2);
+
+  // Third article paragraph
+  const myArticlePar3 = document.createElement('p');
+  myArticlePar3.textContent = articleData.thirdParagraph;
+  myArticle.appendChild(myArticlePar3);
+
+  // Expand button
+  const myExpandButton = document.createElement('span');
+  myExpandButton.textContent = "Show more";
+  myExpandButton.classList.add('expandButton');
+  myExpandButton.addEventListener('click', (event)=>{
+    console.log(event.target);
+    myArticle.classList.toggle('article-open');
+  })
+
+  myArticle.appendChild(myExpandButton);
+
+  
+  return myArticle;
+
+}
+
+const articles = document.querySelector('.articles');
+let myData = data.map((dataItem) => {
+  const newArticle = createArticle(dataItem);
+  articles.appendChild(newArticle);
+  
+});
