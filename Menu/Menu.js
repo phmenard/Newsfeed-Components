@@ -35,23 +35,31 @@ let menuItems = [
   
 */
 
-function createMenu(menuItems){
+function createMenu(menuItems) {
   const myMenu = document.createElement('div');
+  myMenu.classList.add('menu--open');
   myMenu.classList.add('menu');
 
   const itemList = document.createElement('ul');
-  menuItems.forEach((item)=>{
+  menuItems.forEach((item) => {
     const menuItem = document.createElement('li');
     menuItem.textContent = item;
     itemList.appendChild(menuItem);
   })
-
+  
   myMenu.appendChild(itemList);
 
   const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', (event)=>{
+  menuButton.addEventListener('click', (event) => {
     console.log('click');
-    myMenu.classList.toggle('menu--open');
+    if (myMenu.classList.toggle('menu--open')) {  
+    //if (myMenu.style.width !== '350px') {  
+      
+      showNav(itemList, myMenu);
+      itemList.style.display = 'block';
+    } else {
+      hideNav(itemList, myMenu);
+    }
   })
 
   return myMenu;
@@ -60,3 +68,55 @@ function createMenu(menuItems){
 const newMenu = createMenu(menuItems);
 const myBody = document.querySelector('body');
 myBody.appendChild(newMenu);
+
+myBody.addEventListener('click', ()=>{
+  hideNav(newMenu);
+})
+
+
+function showNav(navBar, menu) {
+  //opacity del aside
+  /*TweenLite.to(navBar, 0.01, {
+      autoAlpha: 1
+  });
+  // width del aside
+  TweenLite.to(navBar, 0.3, {
+
+      width: elemWidth,
+      ease: Power2.easeInOut
+  });*/
+  // all of menu
+  /*TweenLite.to(navBar, 0.2, {
+    autoAlpha: 1,
+    width: 350,
+    ease: Power2.easeInOut,
+    delay: 0.1
+  });*/
+  TweenLite.to(menu, 0.2, {
+    autoAlpha: 1,
+    width: 350,
+    ease: Power2.easeInOut,
+    delay: 0.1
+  });
+}
+
+  
+
+function hideNav(navBar, menu) {
+  TweenLite.to(menu, 0.2, {
+    autoAlpha: 1,
+    width: 0,
+    ease: Power2.easeInOut,
+    delay: 0.1
+
+  });
+  /*TweenLite.to(navBar, 0.3, {
+
+      width: 0,
+      ease: Power2.easeInOut
+  });
+  TweenLite.to(navBar, 0.01, {
+      autoAlpha: 0,
+      delay: 0.3
+  });*/
+}

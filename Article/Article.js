@@ -192,7 +192,9 @@ function createArticle(articleData) {
   readButton.classList.add('readButton');
   readButton.textContent = "I've had enough of this.";
   readButton.addEventListener('click', (event) => {
-    myArticle.style.display = 'none';
+    
+    gsap.to(myArticle, {duration: 2, x: 300});
+    //myArticle.style.display = 'none';
     articleData.read = true;
   })
 
