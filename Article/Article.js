@@ -2,6 +2,7 @@
 /* Look over this data, then proceed to line 91*/
 const data = [
   {
+    read: false,
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -23,6 +24,7 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
+    read: false,
     title: 'Javascript and You, ES6',
     date: 'May 7th, 2019',
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
@@ -43,6 +45,7 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
+    read: false,
     title: 'React vs Angular vs Vue',
     date: 'June 7th, 2019',
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -71,6 +74,7 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
+    read: false,
     title: 'Professional Software Development in 2019',
     date: 'Jan 1st, 2019',
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
@@ -85,21 +89,32 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    read: false,
+    title: 'Building Components',
+    date: 'March 15 2020',
+    firstParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
+    Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class='expandButton'></span>
-  </div>
+  
 
   Hint: You will need to use createElement more than once here!
+  
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
@@ -111,4 +126,91 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
+
+  <div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class='expandButton'></span>
+  </div>
 */
+
+
+function createArticle(articleData) {
+  // Article container
+  const myArticle = document.createElement('div');
+  myArticle.classList.add('article');
+
+  // Article h2
+  const myArticleH2 = document.createElement('h2');
+  myArticleH2.textContent = articleData.title;
+  myArticle.appendChild(myArticleH2);
+
+  // Date
+  const myArticleDate = document.createElement('p');
+  myArticleDate.classList.add('date');
+  myArticleDate.textContent = articleData.date;
+  myArticle.appendChild(myArticleDate);
+
+  // First article paragraph
+  const myArticlePar1 = document.createElement('p');
+  myArticlePar1.textContent = articleData.firstParagraph;
+  myArticle.appendChild(myArticlePar1);
+
+  // Second article paragraph
+  const myArticlePar2 = document.createElement('p');
+  myArticlePar1.textContent = articleData.secondParagraph;
+  myArticle.appendChild(myArticlePar2);
+
+  // Third article paragraph
+  const myArticlePar3 = document.createElement('p');
+  myArticlePar3.textContent = articleData.thirdParagraph;
+  myArticle.appendChild(myArticlePar3);
+
+  // Expand button
+  const myExpandButton = document.createElement('span');
+  myExpandButton.classList.add('expandButton');
+  myExpandButton.textContent = "Click to Expand";
+
+  myExpandButton.addEventListener('click', (event) => {
+    console.log(event.target);
+
+    // Display correct button
+    if (myArticle.classList.toggle('article-open')) {
+      myExpandButton.textContent = "Click to Close";
+
+    } else {
+      myExpandButton.textContent = "Click to Expand";
+    }
+  })
+
+  myArticle.appendChild(myExpandButton);
+
+  const readButton = document.createElement('span');
+  readButton.classList.add('readButton');
+  readButton.textContent = "I've had enough of this.";
+  readButton.addEventListener('click', (event) => {
+    
+    //gsap.to(myArticle, {duration: 2, x: 750});
+    myArticle.style.display = 'none';
+    articleData.read = true;
+  })
+
+  myArticle.appendChild(readButton);
+
+
+
+  return myArticle;
+
+}
+
+const articles = document.querySelector('.articles');
+let myData = data.map((dataItem) => {
+  if (!dataItem.read) {
+    const newArticle = createArticle(dataItem);
+    articles.appendChild(newArticle);
+  }
+
+});
