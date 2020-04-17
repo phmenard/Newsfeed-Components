@@ -37,29 +37,31 @@ let menuItems = [
 
 function createMenu(menuItems) {
   const myMenu = document.createElement('div');
-  myMenu.classList.add('menu--open');
+  //myMenu.classList.add('menu--open'); // remove this when not usinf if statment in menuButton.addEventListener
   myMenu.classList.add('menu');
 
-  const itemList = document.createElement('ul');
+  // Build the nav
+  const navList = document.createElement('ul');
   menuItems.forEach((item) => {
     const menuItem = document.createElement('li');
     menuItem.textContent = item;
-    itemList.appendChild(menuItem);
+    navList.appendChild(menuItem);
   })
-  
-  myMenu.appendChild(itemList);
+
+  // Add the nav list to the menu
+  myMenu.appendChild(navList);
 
   const menuButton = document.querySelector('.menu-button');
   menuButton.addEventListener('click', (event) => {
     console.log('click');
-    if (myMenu.classList.toggle('menu--open')) {  
-    //if (myMenu.style.width !== '350px') {  
-      
-      showNav(itemList, myMenu);
-      itemList.style.display = 'block';
+    myMenu.classList.toggle('menu--open'); // change css width back to 350 remove myMenu add class
+    /*if (myMenu.classList.toggle('menu--open')) {  // change CSS width to 0
+      //if (myMenu.style.width !== '350px') {  // change CSS width to 0
+      showNav(myMenu);
+
     } else {
-      hideNav(itemList, myMenu);
-    }
+      hideNav(myMenu);
+    }*/
   })
 
   return myMenu;
@@ -69,29 +71,12 @@ const newMenu = createMenu(menuItems);
 const myBody = document.querySelector('body');
 myBody.appendChild(newMenu);
 
-myBody.addEventListener('click', ()=>{
+/*myBody.addEventListener('click', ()=>{
   hideNav(newMenu);
-})
+})*/
 
 
-function showNav(navBar, menu) {
-  //opacity del aside
-  /*TweenLite.to(navBar, 0.01, {
-      autoAlpha: 1
-  });
-  // width del aside
-  TweenLite.to(navBar, 0.3, {
-
-      width: elemWidth,
-      ease: Power2.easeInOut
-  });*/
-  // all of menu
-  /*TweenLite.to(navBar, 0.2, {
-    autoAlpha: 1,
-    width: 350,
-    ease: Power2.easeInOut,
-    delay: 0.1
-  });*/
+function showNav(menu) {
   TweenLite.to(menu, 0.2, {
     autoAlpha: 1,
     width: 350,
@@ -100,9 +85,9 @@ function showNav(navBar, menu) {
   });
 }
 
-  
 
-function hideNav(navBar, menu) {
+
+function hideNav(menu) {
   TweenLite.to(menu, 0.2, {
     autoAlpha: 1,
     width: 0,
@@ -110,13 +95,5 @@ function hideNav(navBar, menu) {
     delay: 0.1
 
   });
-  /*TweenLite.to(navBar, 0.3, {
 
-      width: 0,
-      ease: Power2.easeInOut
-  });
-  TweenLite.to(navBar, 0.01, {
-      autoAlpha: 0,
-      delay: 0.3
-  });*/
 }
